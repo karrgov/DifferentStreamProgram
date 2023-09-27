@@ -36,6 +36,13 @@ int main()
         wordFilt.removeEveryWordMatch();
         sinkStream.printEverything();
 
+        //test for SequenceReplaceFilter
+        Stream secondStream("i weight hey no more weight key weight");
+        SequenceReplaceFilter replaceFilter(&secondStream, "weight", "haha");
+        char* result = replaceFilter.replaceTargetWithReplacement();
+        std::cout << result << std::endl;
+        free(result);
+
         
     }
     catch(const std::exception& ex)

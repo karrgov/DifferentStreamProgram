@@ -11,3 +11,16 @@ public:
 
     void removeEveryWordMatch();
 };
+
+class SequenceReplaceFilter
+{
+private:
+    const char* toBeReplaced;
+    const char* replaceWord;
+    Stream* sourceStream;
+
+public:
+    SequenceReplaceFilter(Stream* stream, const char* target, const char* replacement);
+
+    char* replaceTargetWithReplacement();
+};
