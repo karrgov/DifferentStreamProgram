@@ -5,6 +5,7 @@
 #include <cassert>
 #include "StreamClasses.h"
 #include "SinkClasses.h"
+#include "FilterClasses.h"
 
 int main()
 {
@@ -14,7 +15,7 @@ int main()
         //Stream stream;
         //std::cout << "Input text data and terminate by Control + D:\n";
         //char* input = stream.readInput();
-        Stream stream("anfgsdgdsg");
+        Stream stream("ag kar jf kar");
         
         //test for Sink class
         Sink sinkStream(&stream);
@@ -29,6 +30,13 @@ int main()
         //test for FileSink class
         FileSink streamToFile(&stream, "Text.txt");
         streamToFile.saveTextDataToFile();
+
+        //test for WordFilter class
+        WordFilter wordFilt(&stream, "kar");
+        wordFilt.removeEveryWordMatch();
+        sinkStream.printEverything();
+
+        
     }
     catch(const std::exception& ex)
     {
