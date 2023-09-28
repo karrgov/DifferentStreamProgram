@@ -33,15 +33,25 @@ int main()
 
         //test for WordFilter class
         WordFilter wordFilt(&stream, "kar");
-        wordFilt.removeEveryWordMatch();
-        sinkStream.printEverything();
+        std::cout << wordFilt.applyFilter(&stream) << std::endl;
+        //sinkStream.printEverything();
 
         //test for SequenceReplaceFilter
         Stream secondStream("i weight hey no more weight key weight");
         SequenceReplaceFilter replaceFilter(&secondStream, "weight", "haha");
-        char* result = replaceFilter.replaceTargetWithReplacement();
+        char* result = replaceFilter.applyFilter(&secondStream);
         std::cout << result << std::endl;
         free(result);
+        std::cout << "work" << std::endl;
+
+        //test for PairFilter
+        Stream thirdStream("i weight hey no more weight key weight");
+        SequenceReplaceFilter replaceFilterSecond(&secondStream, "weight", "haha");
+        WordFilter wordFilterSecond(&stream, "haha");
+        PairFilter pairFilter(&stream, &replaceFilterSecond, &wordFilterSecond);
+        char* resultSecond = pairFilter.applyFilter(&thirdStream);
+        std::cout << resultSecond << std::endl;
+
 
         
     }
