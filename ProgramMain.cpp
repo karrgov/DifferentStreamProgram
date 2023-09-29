@@ -46,14 +46,23 @@ int main()
 
         //test for PairFilter
         Stream thirdStream("i weight hey no more weight key weight");
-        SequenceReplaceFilter replaceFilterSecond(&secondStream, "weight", "haha");
+        SequenceReplaceFilter replaceFilterSecond(&thirdStream, "weight", "haha");
         WordFilter wordFilterSecond(&stream, "haha");
         PairFilter pairFilter(&stream, &replaceFilterSecond, &wordFilterSecond);
         char* resultSecond = pairFilter.applyFilter(&thirdStream);
         std::cout << resultSecond << std::endl;
 
-
-        
+        //test for operators
+        Stream fourthStream("caradf truck");
+        WordFilter wordFilterThird(&fourthStream, "truck");
+        std::cout << wordFilterThird.applyFilter(&fourthStream) << std::endl;
+        std::cout << wordFilterThird.operator*() << std::endl;
+        wordFilterThird.operator++();
+        wordFilterThird.operator++();
+        std::cout << wordFilterThird.operator[](-1) << std::endl;
+        char* res = wordFilterThird.operator()(1, 3);
+        std::cout << res << std::endl;
+        free(res);
     }
     catch(const std::exception& ex)
     {
